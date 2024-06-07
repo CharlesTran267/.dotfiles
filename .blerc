@@ -1,0 +1,39 @@
+# blerc
+
+# If ble/contrib/integration/fzf cannot find the fzf directory, please set the
+# following variable "_ble_contrib_fzf_base" manually.  The value
+# "/path/to/fzf-directory" should be replaced by a path to the fzf directory
+# such as "$HOME/.fzf" or "/usr/share/fzf" that contain
+# "shell/{completion,key-bindings}.bash" or "{completion,key-bindings}.bash".
+
+_ble_contrib_fzf_base=$HOME/.fzf
+
+# Note: If you would like to combine fzf-completion with bash_completion, you
+# need to load bash_completion earlier than fzf-completion.
+
+source /etc/profile.d/bash_completion.sh
+
+# blerc
+
+set -o vi
+
+# Setup fzf
+ble-import -d integration/fzf-completion
+ble-import -d integration/fzf-key-bindings
+
+# Change default color scheme for ble.sh
+ble-face auto_complete=fg=242,bg=transparent
+ble-face command_builtin=fg=217
+ble-face syntax_error=fg=red,bold
+ble-face command_file=fg=217
+ble-face filename_directory=fg=147,underline
+ble-face command_directory=fg=147,underline
+ble-face filename_url=fg=116,underline
+ble-face syntax_quoted=fg=151
+
+# Change default key bindings for ble.sh
+ble-bind -m 'auto_complete' -f C-y auto_complete/insert-on-end
+ble-bind -m vi_imap -f 'C-m' 'accept-line'
+ble-bind -m vi_imap -f 'RET' 'accept-line'
+ble-bind -m vi_nmap -f 'C-m' 'accept-line'
+ble-bind -m vi_nmap -f 'RET' 'accept-line'
