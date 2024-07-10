@@ -143,3 +143,9 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+export P_MODEL_SERVER_RUNTIME=runc
+export P_MODEL_SERVER_MODEL_USE_CACHE=true
+export P_MODEL_SERVER_ARCHIVE=/home/archuser/eureka/model-archive
+
+[ -f "/home/charlestran/.ghcup/env" ] && . "/home/charlestran/.ghcup/env" # ghcup-env
