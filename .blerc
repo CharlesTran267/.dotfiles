@@ -15,7 +15,6 @@ source /etc/profile.d/bash_completion.sh
 
 # blerc
 
-set -o vi
 
 # Setup fzf
 ble-import -d integration/fzf-completion
