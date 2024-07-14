@@ -69,6 +69,10 @@ bindsym $mod+Return exec kitty
 # Move workspaces between monitors
 bindsym $mod+Ctrl+greater move workspace to output right
 bindsym $mod+Ctrl+less move workspace to output left
+
+# Move all workspaces to right
+bindsym $mod+Shift+s exec /home/charlestran/.config/i3/move_workspaces.sh
+
 # kill focused window
 bindsym $mod+q kill
 

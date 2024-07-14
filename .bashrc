@@ -128,6 +128,7 @@ alias vpn-con='warp-cli connect'
 alias vpn-dis='warp-cli disconnect'
 alias vpn-status='warp-cli status'
 alias bat='batcat'
+alias ..='cd ..'
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
