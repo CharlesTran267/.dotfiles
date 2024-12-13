@@ -375,6 +375,9 @@ exec redshift-gtk
 # exec setxkbmap -option ctrl:nocaps
 exec setxkbmap -option caps:escape
 
+# i3-battery-popup
+exec --no-startup-id ~/.config/i3/i3-battery-popup/i3-battery-popup -n -L 20 -l 10 -s ~/.config/i3/i3-battery-popup/i3-battery-popup.wav
+
 ######################################
 # color settings fo windows         #
 ######################################

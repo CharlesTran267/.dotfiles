@@ -161,3 +161,6 @@ alias gf='git fetch'
 alias gp='git push'
 alias gpu='git push -u origin $(git rev-parse --abbrev-ref HEAD)'
 alias gpl='git pull'
+
+# nvim alias
+alias nv='nvim'
