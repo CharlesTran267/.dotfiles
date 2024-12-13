@@ -285,10 +285,12 @@ bindsym $mod+n exec pcmanfm
 # PDF Reader Zathura 
 bindsym $mod+Shift+o exec zathura
 
-# Screenshot : import
-bindsym --release ctrl+shift+x exec import ~/Pictures/Screenshots/$(date +%Y-%m-%d-%H-%M-%S).png
-bindsym Print exec flameshot full --path ~/Pictures/screenshots
-bindsym $mod+Print exec flameshot gui
+# Screenshot : import and copy to clipboard
+# define the file name
+
+bindsym --release ctrl+shift+x exec file_name=~/Pictures/Screenshots/screenshot_$(date +%Y-%m-%d-%H-%M-%S).png && import "$file_name" && xclip -selection clipboard -t image/png -i "$file_name"
+
+bindsym --release ctrl+shift+z exec file_name=~/Pictures/Screenshots/screenshot_$(date +%Y-%m-%d-%H-%M-%S).png && import -window root "$file_name" && xclip -selection clipboard -t image/png -i "$file_name"
 
 # start a terminal
 bindsym $mod+Return exec kitty
