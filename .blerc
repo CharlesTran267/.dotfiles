@@ -31,7 +31,4 @@ ble-face syntax_quoted=fg=151
 
 # Change default key bindings for ble.sh
 ble-bind -m 'auto_complete' -f C-y auto_complete/insert-on-end
-ble-bind -m vi_imap -f 'C-m' 'accept-line'
-ble-bind -m vi_imap -f 'RET' 'accept-line'
-ble-bind -m vi_nmap -f 'C-m' 'accept-line'
-ble-bind -m vi_nmap -f 'RET' 'accept-line'
+ble-bind -f 'C-m' 'accept-line'

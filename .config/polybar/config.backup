@@ -55,12 +55,12 @@ alert = ${colors.red}
 disabled = ${colors.subtext1}
 
 [bar/toph]
+dpi = 96
+
 monitor = ${env:MONITOR:}
 width = 100%
-height = 28pt
+height = 28
 radius = 0
-
-; dpi = 96
 
 background = ${colors.background}
 foreground = ${colors.foreground}

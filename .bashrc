@@ -148,5 +148,6 @@ esac
 export P_MODEL_SERVER_RUNTIME=runc
 export P_MODEL_SERVER_MODEL_USE_CACHE=true
 export P_MODEL_SERVER_ARCHIVE=/home/archuser/eureka/model-archive
+export PATH="$PATH:/opt/nvim-linux64/bin"
 
 [ -f "/home/charlestran/.ghcup/env" ] && . "/home/charlestran/.ghcup/env" # ghcup-env
