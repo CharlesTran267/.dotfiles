@@ -151,3 +151,4 @@ export P_MODEL_SERVER_ARCHIVE=/home/archuser/eureka/model-archive
 export PATH="$PATH:/opt/nvim-linux64/bin"
 
 [ -f "/home/charlestran/.ghcup/env" ] && . "/home/charlestran/.ghcup/env" # ghcup-env
+export PATH="$HOME/.local/bin:$PATH"
