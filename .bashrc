@@ -152,3 +152,12 @@ export PATH="$PATH:/opt/nvim-linux64/bin"
 
 [ -f "/home/charlestran/.ghcup/env" ] && . "/home/charlestran/.ghcup/env" # ghcup-env
 export PATH="$HOME/.local/bin:$PATH"
+
+# Git aliases
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit'
+alias gf='git fetch'
+alias gp='git push'
+alias gpu='git push -u origin $(git rev-parse --abbrev-ref HEAD)'
+alias gpl='git pull'
