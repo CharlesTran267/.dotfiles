@@ -1,34 +1,31 @@
 #!/bin/bash
 
-# Get the list of connected monitors
-MONITORS=($(i3-msg -t get_outputs | jq -r '.[] | select(.active) | .name'))
+# get socket path
+socket_path="/run/user/1000/i3/$(ls -t /run/user/1000/i3/ | awk '{print $1}' | grep ipc | head -n 1)"
 
-if [ ${#MONITORS[@]} -ne 2 ]; then
-    echo "Error: This script only works with exactly two monitors connected."
-    exit 1
-fi
+# Get list of workspaces
+WORKSPACES=$(i3-msg --socket $socket_path -t get_workspaces | jq -r '.[] | .name')
 
-# Get workspaces for each monitor
-WORKSPACES_MON1=($(i3-msg -t get_workspaces | jq -r ".[] | select(.output == \"${MONITORS[0]}\") | .name"))
-WORKSPACES_MON2=($(i3-msg -t get_workspaces | jq -r ".[] | select(.output == \"${MONITORS[1]}\") | .name"))
+# Get focused workspace
+FOCUSED_WORKSPACE=$(i3-msg --socket $socket_path -t get_workspaces | jq -r '.[] | select(.focused==true) | .name')
 
-# Swap workspaces from Monitor 1 to Monitor 2
-for WORKSPACE in "${WORKSPACES_MON1[@]}"; do
-    i3-msg workspace "$WORKSPACE"
-    i3-msg move workspace to output "${MONITORS[1]}"
+# Get list of visible workspaces
+VISIBLE_WORKSPACES=$(i3-msg --socket $socket_path -t get_workspaces | jq -r '.[] | select(.visible==true) | .name')
+
+for workspace in $WORKSPACES; do
+    echo "Moving workspace $workspace to output right"
+    i3-msg --socket $socket_path [workspace=$workspace] move workspace to output right
 done
 
-# Swap workspaces from Monitor 2 to Monitor 1
-for WORKSPACE in "${WORKSPACES_MON2[@]}"; do
-    i3-msg workspace "$WORKSPACE"
-    i3-msg move workspace to output "${MONITORS[0]}"
+# Focus on the workspace that was visible but not focused before first. This is to ensure all previously-visible are still visible and previously-focused are still focused
+for workspace in $VISIBLE_WORKSPACES; do
+    if [ "$workspace" != "$FOCUSED_WORKSPACE" ]; then
+        echo "Focusing workspace $workspace"
+        i3-msg --socket $socket_path [workspace=$workspace] focus
+        break
+    fi
 done
 
-# Refocus the first workspace on Monitor 1 (optional)
-if [ "${#WORKSPACES_MON1[@]}" -gt 0 ]; then
-    i3-msg workspace "${WORKSPACES_MON1[0]}"
-elif [ "${#WORKSPACES_MON2[@]}" -gt 0 ]; then
-    i3-msg workspace "${WORKSPACES_MON2[0]}"
-fi
-
-echo "All workspaces swapped between ${MONITORS[0]} and ${MONITORS[1]}."
+# Focus on the workspace that was focused before
+echo "Focusing workspace $FOCUSED_WORKSPACE"
+i3-msg --socket $socket_path [workspace=$FOCUSED_WORKSPACE] focus

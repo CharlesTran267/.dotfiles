@@ -155,6 +155,7 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # Git aliases
 alias gs='git status'
+alias gd='git diff'
 alias ga='git add'
 alias gc='git commit'
 alias gf='git fetch'

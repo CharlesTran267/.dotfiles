@@ -10,7 +10,7 @@
 ####################################
 #     MY MODS
 ####################################
-focus_follows_mouse no
+focus_follows_mouse yes
 focus_wrapping no
 for_window [class="^.*"] border pixel 2
 title_align center
@@ -343,11 +343,6 @@ bindsym XF86AudioPrev exec playerctl previous
 #############################################
 # autostart applications/services on login: #
 #############################################
-# xorg commands
-exec xrandr -s 1920x1080 -r 60
-exec xset s -dpms
-exec xset s off
-
 # compositor
 exec picom
 
@@ -365,7 +360,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
 
 # background
-exec nitrogen --restore
+exec feh -no-startup-id --bg-scale ~/Pictures/background.png
 
 # get auth work with polkit
 exec --no-startup-id /usr/lib/mate-polkit/polkit-mate-authentication-agent-1
