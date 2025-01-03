@@ -12,6 +12,7 @@ VISIBLE_WORKSPACES=$(i3-msg --socket $socket_path -t get_workspaces | jq -r '.[]
 # Get focused monitor
 FOCUSED_MONITOR=$(i3-msg --socket $socket_path -t get_workspaces | jq -r '.[] | select(.focused==true) | .output')
 
+# Move all workspaces to the right
 for workspace in $WORKSPACES; do
     echo "Moving workspace $workspace to output right"
     i3-msg --socket $socket_path [workspace=$workspace] move workspace to output right
